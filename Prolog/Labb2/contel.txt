@@ -1,0 +1,8 @@
+[cont].
+
+q.
+
+[
+ [1, cont, premise],
+ [2, q, contel(1)]
+].

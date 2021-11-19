@@ -1,0 +1,6 @@
+[filnamn]. för att kompilera fil
+
+trace. för att visa alla steg
+
+notrace.
+nodebug. för att sluta trace:a
