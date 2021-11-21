@@ -19,6 +19,14 @@ check_rule(Prems, Goal, [[Linum, Res, premise]|Tproof], Prev) :-
   write('Premissen stämmer. '),
   check_rule(Prems, Goal, Tproof, [[Linum,Res]|Prev]).
 
+% andint
+check_rule(Prems, Goal, [[Linum, Res, andint(X,Y)]|Tproof], Prev) :-
+  member([X,Z1], Prev),
+  member([Y,Z2], Prev),
+  and(Z1,Z2) == Res,
+  write('andint stämmer. '),
+  check_rule(Prems, Goal, Tproof, [[Linum,Res]|Prev]).
+
 % AndEl
 check_rule(Prems, Goal, [[Linum, Res, andel1(X)]|Tproof], Prev) :-
   member([X, and(Res, Z)], Prev),
@@ -29,6 +37,17 @@ check_rule(Prems, Goal, [[Linum, Res, andel2(X)]|Tproof], Prev) :-
   member([X, and(Z, Res)], Prev),
   write('andel2 stämmer. '),
   check_rule(Prems, Goal, Tproof, [[Linum,Res]|Prev]).
+
+% orint
+check_rule(Prems, Goal, [[Linum, or(Z,W), orint1(X)]|Tproof], Prev) :-
+  member([X,Z],Prev),
+  write('orint1 stämmer. '),
+  check_rule(Prems, Goal, Tproof, [[Linum,or(Z,W)]|Prev]).
+
+check_rule(Prems, Goal, [[Linum, or(Z,W), orint2(X)]|Tproof], Prev) :-
+  member([X,W],Prev),
+  write('orint2 stämmer. '),
+  check_rule(Prems, Goal, Tproof, [[Linum,or(Z,W)]|Prev]).
 
 % impel
 check_rule(Prems, Goal, [[Linum, Res, impel(X,Y)]|Tproof], Prev) :-
@@ -50,16 +69,29 @@ check_rule(Prems, Goal, [[Linum, Res, contel(X)]|Tproof], Prev) :-
   write('contel stämmer. '),
   check_rule(Prems, Goal, Tproof, [[Linum,Res]|Prev]).
 
+% negnegint
+check_rule(Prems, Goal, [[Linum,neg(neg(Z)),negnegint(X)]|Tproof], Prev) :-
+  member([X,Z], Prev),
+  write('negnegint stämmer. '),
+  check_rule(Prems, Goal, Tproof, [[Linum, neg(neg(Z))]|Prev]).
+
 % negnegel
 check_rule(Prems, Goal, [[Linum, Res, negnegel(X)]|Tproof], Prev) :-
   member([X,neg(neg(Res))], Prev),
   write('negnegel stämmer. '),
   check_rule(Prems, Goal, Tproof, [[Linum,Res]|Prev]).
 
-%andint
-check_rule(Prems, Goal, [[Linum, Res, andint(X,Y)]|Tproof], Prev) :-
-  member([X,Z1], Prev),
-  member([Y,Z2], Prev),
-  and(Z1,Z2) == Res,
-  write('andint stämmer. '),
+% mt (modus tonem)
+check_rule(Prems, Goal, [[Linum, neg(Z), mt(X,Y)]|Tproof], Prev) :-
+  member([X,imp(Z, W)], Prev),
+  member([Y,neg(W)], Prev),
+  write('mt stämmer. '),
   check_rule(Prems, Goal, Tproof, [[Linum,Res]|Prev]).
+
+% lem
+check_rule(Prems, Goal, [[Linum, or(Z,neg(Z)), lem]|Tproof], Prev) :-
+  write('lem stämmer. '),
+  check_rule(Prems, Goal, Tproof, [[Linum, or(Z,neg(Z))]|Prev]).
+
+% box handler
+%check_rule(Prems, Goal, Proof, Prev) :-
