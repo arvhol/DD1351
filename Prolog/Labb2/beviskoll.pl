@@ -86,12 +86,25 @@ check_rule(Prems, Goal, [[Linum, neg(Z), mt(X,Y)]|Tproof], Prev) :-
   member([X,imp(Z, W)], Prev),
   member([Y,neg(W)], Prev),
   write('mt stämmer. '),
-  check_rule(Prems, Goal, Tproof, [[Linum,Res]|Prev]).
+  check_rule(Prems, Goal, Tproof, [[Linum,neg(Z)]|Prev]).
 
 % lem
 check_rule(Prems, Goal, [[Linum, or(Z,neg(Z)), lem]|Tproof], Prev) :-
   write('lem stämmer. '),
   check_rule(Prems, Goal, Tproof, [[Linum, or(Z,neg(Z))]|Prev]).
 
-% box handler
-%check_rule(Prems, Goal, Proof, Prev) :-
+% copy
+check_rule(Prems, Goal, [[Linum, Res, copy(X)]|Tproof], Prev) :-
+  member([X, Res], Prev),
+  write('copy stämmer. '),
+  check_rule(Prems, Goal, Tproof, [[Linum,Res]|Prev]).
+
+% ----------------- box handlers ---------------------
+% impint
+check_rule(Prems, Goal, [[[Linum,Res,assumption]|Tbox], [Linum2, imp(Res, Z), impint(Linum,Y)]|Tproof], Prev) :-
+  check_rule([Res|Prems], Z, Tbox, [[Linum,Res]|Prev]),
+  %write('2'),
+  %K is Linum2 - 1,
+  %member([K,Z,_], [[Linum,Res,assumption]|Tbox]),
+  write('impint stämmer. '),
+  check_rule(Prems, Goal, Tproof, [[Linum2,imp(Res,Z)]|Prev]).
