@@ -1,0 +1,11 @@
+[q].
+
+imp(p,q).
+
+[
+  [
+    [1, p,                     assumption],
+    [2, q,                     premise]
+  ],
+  [3, pim(p,q),                arvid(1,2)]
+].

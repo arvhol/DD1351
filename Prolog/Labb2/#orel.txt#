@@ -1,0 +1,7 @@
+[or(p,q), neg(p), neg(q)].
+r.
+[
+ [1, or(p,q), premise],
+ [
+  [2, p, assumption],
+  [3, neg(p), premise],
