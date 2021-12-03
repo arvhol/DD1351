@@ -1,0 +1,21 @@
+– vägkvantifierare
+  • över alla vägar		A
+  • över någon väg		E
+  
+– tillståndskvantifierare
+  • för nästa tillstånd i vägen	X
+  • för alla tillstånd i vägen	G
+  • för något tillstånd i vägen	F
+
+
+AX φ i nästa tillstånd φ
+AG φ alltid φ
+AF φ så småningom φ
+
+EX φ i något nästa tillstånd φ
+EG φ det finns en väg där alltid φ
+EF φ det finns en väg där så småningom φ
+
+AG AF φ oändligt ofta φ
+AG (φ → AF ψ) alltid efter φ så småningom ψ AG EF φ alltid nåbar φ
+AF AG φ så småningom stabilt φ
