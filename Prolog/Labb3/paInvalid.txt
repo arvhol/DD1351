@@ -1,0 +1,22 @@
+[
+ [av,    [start, meny]],
+ [meny,  [koll, mo, av]],
+ [mo,    [va]],
+ [start, [koll]],
+ [koll,  [av, krav]],
+ [krav,  [va, av]],
+ [va,    [av]]
+].
+[
+ [av,    []],
+ [meny,  [sk, pa]],
+ [mo,    [k1, pa]],
+ [start, [tim]],
+ [koll,  [pa]],
+ [krav,  [tor, re, pa]],
+ [va,    [v, pa]]
+].
+
+av.
+
+ef(ax(ag(v))).
